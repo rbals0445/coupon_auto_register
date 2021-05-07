@@ -16,3 +16,6 @@ Cookierun_kingdom game Coupon auto register
 
 
 # 2021/02/17 32bit호환성을 생각하지 못했음. 다음번에 배포시에는 32/64bit 고려를 전부 해야겠음.
+
+# 2021/05/07 chromedriver 91version까지 추가. 
+# chromedriver 확장성을 고려한 설계를 했어야함. 잘못됨.
