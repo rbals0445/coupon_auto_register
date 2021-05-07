@@ -11,16 +11,21 @@ import tkinter as tk
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+
+file_path = ['./chromedriver/chromedriver91.exe','./chromedriver/chromedriver90.exe','./chromedriver/chromedriver89.exe','./chromedriver/chromedriver88.exe','./chromedriver/chromedriver87.exe','./chromedriver/chromedriver86.exe','./chromedriver/chromedriver85.exe',
+             './chromedriver/chromedriver84.exe']
+
+
 global code
 try:
-    cred = credentials.Certificate('#json 파일 위치')
+    cred = credentials.Certificate('json파일위치')
 except:
     print("인증서 가져오기 실패.")
 
 
 try :
     firebase_admin.initialize_app(cred,{
-        'databaseURL' : '#My Firebase DB Address'
+        'databaseURL' : 'url'
     })
 except :
     print("already accessed")
@@ -30,22 +35,12 @@ code = dir.get()
 
 def connect() :
     url = 'https://game.devplay.com/coupon/ck/ko'
-    try :
-        driver = webdriver.Chrome('./chromedriver/chromedriver88.exe')
-    except : 
+    for i in file_path :
         try :
-            driver = webdriver.Chrome('./chromedriver/chromedriver87.exe')
-        except :
-            try :
-                driver = webdriver.Chrome('./chromedriver/chromedriver86.exe')
-            except :
-                try :
-                    driver = webdriver.Chrome('./chromedriver/chromedriver85.exe')
-                except:
-                    try:
-                        driver = webdriver.Chrome('./chromedriver/chromedriver84.exe')
-                    except:
-                        print("error")
+            driver = webdriver.Chrome(i)
+        except : 
+            print("Error : There is no matched ChromeDriver. Check your Chrome version.")
+    
                             
     driver.get(url)
     id_box = driver.find_element_by_id('email-box')
